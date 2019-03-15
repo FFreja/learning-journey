@@ -9,10 +9,4 @@ public class LargeSpot extends Spot {
   public LargeSpot(int number) {
     this.number = number;
   }
-
-  @Override
-  public int assignTo(Vehicle v) {
-    isFree = false;
-    return this.number;
-  }
 }

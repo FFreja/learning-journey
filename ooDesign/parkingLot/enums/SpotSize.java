@@ -1,7 +1,7 @@
 package parkingLot.enums;
 
 public enum SpotSize {
-    SMALL,
-    MEDIUM,
-    LARGE
+  SMALL,
+  MEDIUM,
+  LARGE
 }

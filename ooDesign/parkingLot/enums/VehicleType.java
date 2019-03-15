@@ -1,8 +1,6 @@
 package parkingLot.enums;
 
-/**
- * Vehicle type
- */
+/** Vehicle type */
 public enum VehicleType {
   CAR,
   VAN,
