@@ -3,7 +3,7 @@ package parkingLot.domain;
 import java.time.LocalDateTime;
 
 public class Ticket {
-  LocalDateTime exitAt;
+  private LocalDateTime exitAt;
   private int id;
   private LocalDateTime enterAt;
   private Vehicle vehicle;

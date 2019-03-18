@@ -15,11 +15,21 @@
 - Vehicle (Car, Van, Truck): plateNumber, size.
 - Spot (Small, Medium, Large) : number, type, status, rate. 
   - assignToVehicle: relate a spot to a vehicle. update status of spot. 
+  - returnSpot: set spot status back to free and remove the vehicle attached on it.
 - Ticket : Id, enterAt, exitAt, vehicle, spot, amount. 
-  - associateToSpot: connect spot with vehicle. calculate total price.
+
+- TicketSystem
+    - generateTicket: connect spot with vehicle. issue a new ticket.
+    - complete: update ticket status to DB.
+- PaymentSystem
+    - checkout: get total price of parking
   
-  **parking lot has spots, ticket service**  
-  **ticket has vehicle and spot**
-  **spot has vehicle**
+  **Parking lot has spots, ticket service, payment service**  
+  
+  **Ticket has vehicle and spot**
+  
+  **Spot has vehicle**
+ 
 
 ###Code sample (java)
+![diagram](https://github.com/FFreja/learning-journey/resources/parkinglot.jpg)

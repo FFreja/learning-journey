@@ -7,7 +7,7 @@ public class MediumSpot extends Spot {
   private static final SpotSize SIZE = SpotSize.MEDIUM;
 
   public MediumSpot(int number) {
-    this.number = number;
+    super(number);
   }
 
   @Override

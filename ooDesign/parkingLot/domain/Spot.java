@@ -3,9 +3,13 @@ package parkingLot.domain;
 import parkingLot.enums.SpotSize;
 
 public abstract class Spot {
-  int number = 0;
-  boolean isFree = true;
-  Vehicle vehicle;
+  private int number = 0;
+  private boolean isFree = true;
+  private Vehicle vehicle;
+
+  public Spot(int number) {
+    this.number = number;
+  }
 
   public int assignTo(Vehicle v) throws Exception {
     if (isFree) this.vehicle = v;

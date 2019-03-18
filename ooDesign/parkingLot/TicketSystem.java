@@ -8,11 +8,11 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TicketService {
+public class TicketSystem {
   private static int id =
       1; // In real life, we can have a key generation service or having incrementally id from DB.
   private static Map<Integer, Ticket> ticketDB = new HashMap<>();
-  private static TicketService ticketService;
+  private static TicketSystem ticketSystem;
 
   /**
    * only one ticket service allowed to ensure no duplicate tickets get created. It is helpful once
@@ -20,9 +20,9 @@ public class TicketService {
    *
    * @return
    */
-  public static TicketService getTicketService() {
-    if (ticketService == null) ticketService = new TicketService();
-    return ticketService;
+  public static TicketSystem getTicketSystem() {
+    if (ticketSystem == null) ticketSystem = new TicketSystem();
+    return ticketSystem;
   }
 
   /**
@@ -37,7 +37,6 @@ public class TicketService {
     ticket.setSpot(spot);
     ticket.setVehicle(vehicle);
     ticketDB.put(id, ticket);
-    spot.assignTo(vehicle);
     id++;
     return ticket;
   }

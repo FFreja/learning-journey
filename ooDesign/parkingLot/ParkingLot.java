@@ -9,7 +9,7 @@ public class ParkingLot {
   private static List<Spot> smallSpots = new ArrayList<>();
   private static List<Spot> mediumSpots = new ArrayList<>();
   private static List<Spot> largeSpots = new ArrayList<>();
-  private static TicketService ticketService = TicketService.getTicketService();
+  private static TicketSystem ticketSystem = TicketSystem.getTicketSystem();
   private static PaymentSystem paymentSystem = new PaymentSystem();
 
   public static void main(String[] args) throws Exception {
@@ -28,6 +28,13 @@ public class ParkingLot {
     exit(3);
   }
 
+  /**
+   * get a free spot from the list and generate tickets
+   *
+   * @param vehicle
+   * @return
+   * @throws Exception
+   */
   private static Ticket enter(Vehicle vehicle) throws Exception {
     Spot spot;
     switch (vehicle.getType()) {
@@ -43,8 +50,8 @@ public class ParkingLot {
       default:
         throw new Exception("This vehicle is not supported");
     }
-
-    return ticketService.generateTicket(vehicle, spot);
+    spot.assignTo(vehicle);
+    return ticketSystem.generateTicket(vehicle, spot);
   }
 
   /**
@@ -55,7 +62,7 @@ public class ParkingLot {
    * @throws Exception
    */
   private static long exit(int ticketId) throws Exception {
-    Ticket ticket = ticketService.complete(ticketId);
+    Ticket ticket = ticketSystem.complete(ticketId);
     returnSpot(ticket.getSpot());
     return paymentSystem.checkout(ticket);
   }

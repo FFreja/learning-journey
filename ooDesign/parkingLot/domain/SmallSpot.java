@@ -7,7 +7,7 @@ public class SmallSpot extends Spot {
   private static final SpotSize SIZE = SpotSize.SMALL;
 
   public SmallSpot(int number) {
-    this.number = number;
+    super(number);
   }
 
   @Override
