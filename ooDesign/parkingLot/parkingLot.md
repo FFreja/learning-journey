@@ -1,7 +1,7 @@
-#Classic OO design - Parking Lot
+# Classic OO design - Parking Lot
 
-##Start from Basic - 1 parking Lot with 1 level parking, 1 entry, 1 exit
-###Use cases (It is easier if you think it with function flow.)
+## Start from Basic - 1 parking Lot with 1 level parking, 1 entry, 1 exit
+### Use cases (It is easier if you think it with function flow.)
 - A vehicle entered.
    - User enter data to the system. It records enter date, vehicle size, generate a ticket id.
    - System find valid spot and assign it to this vehicle. Status of vehicle need to be updated.
@@ -10,7 +10,7 @@
    - User pay it in cash.(profit, revenue is out of scope)
    - System remove this vehicle from spot, set spot back to free.
      
-###Objects list
+### Objects list
 - Parking Lot: list of spots. 
 - Vehicle (Car, Van, Truck): plateNumber, size.
 - Spot (Small, Medium, Large) : number, type, status, rate. 
@@ -31,5 +31,5 @@
   **Spot has vehicle**
  
 
-###Code sample (java)
-![diagram](https://github.com/FFreja/learning-journey/resources/parkinglot.jpg)
+### Code sample (java)
+![](https://github.com/FFreja/learning-journey/blob/master/resources/parkinglot.jpg)
