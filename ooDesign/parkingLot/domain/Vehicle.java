@@ -3,8 +3,8 @@ package parkingLot.domain;
 import parkingLot.enums.VehicleType;
 
 public abstract class Vehicle {
-  int plateNumber = 0;
   VehicleType type;
+  private int plateNumber;
 
   public Vehicle(int plateNumber) {
     this.plateNumber = plateNumber;
@@ -14,15 +14,7 @@ public abstract class Vehicle {
     return plateNumber;
   }
 
-  public void setPlateNumber(int plateNumber) {
-    this.plateNumber = plateNumber;
-  }
-
   public VehicleType getType() {
     return type;
-  }
-
-  public void setType(VehicleType type) {
-    this.type = type;
   }
 }

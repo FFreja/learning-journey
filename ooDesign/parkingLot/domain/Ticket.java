@@ -11,6 +11,7 @@ public class Ticket {
 
   public Ticket(int id) {
     this.enterAt = LocalDateTime.now();
+    this.id = id;
   }
 
   public Vehicle getVehicle() {

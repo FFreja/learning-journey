@@ -3,10 +3,20 @@ package parkingLot.domain;
 import parkingLot.enums.SpotSize;
 
 public class LargeSpot extends Spot {
-  public static final double rate = 10;
-  public static final SpotSize size = SpotSize.LARGE;
+  private static final long RATE = 10;
+  private static final SpotSize SIZE = SpotSize.LARGE;
 
   public LargeSpot(int number) {
     this.number = number;
+  }
+
+  @Override
+  public long getRate() {
+    return RATE;
+  }
+
+  @Override
+  public SpotSize getSize() {
+    return SIZE;
   }
 }

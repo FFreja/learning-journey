@@ -4,22 +4,24 @@ import parkingLot.enums.SpotSize;
 
 public abstract class Spot {
   int number = 0;
-  long rate = 0;
-  boolean isFree;
-  SpotSize size;
+  boolean isFree = true;
+  Vehicle vehicle;
 
-  int assignTo(Vehicle v) {
+  public int assignTo(Vehicle v) throws Exception {
+    if (isFree) this.vehicle = v;
+    else throw new Exception("This Spot is in use");
     isFree = false;
     return this.number;
   }
 
-  public SpotSize getSize() {
-    return size;
+  public void returnSpot() {
+    this.vehicle = null;
+    this.isFree = true;
   }
 
-  public long getRate() {
-    return rate;
-  }
+  public abstract long getRate();
+
+  public abstract SpotSize getSize();
 
   public int getNumber() {
     return number;

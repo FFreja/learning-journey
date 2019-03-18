@@ -2,18 +2,18 @@ package parkingLot;
 
 import parkingLot.domain.*;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingLot {
-  static List<Spot> smallSpots = new ArrayList<>();
-  static List<Spot> mediumSpots = new ArrayList<>();
-  static List<Spot> largeSpots = new ArrayList<>();
-  static TicketService ticketService = TicketService.getTicketService();
+  private static List<Spot> smallSpots = new ArrayList<>();
+  private static List<Spot> mediumSpots = new ArrayList<>();
+  private static List<Spot> largeSpots = new ArrayList<>();
+  private static TicketService ticketService = TicketService.getTicketService();
+  private static PaymentSystem paymentSystem = new PaymentSystem();
 
   public static void main(String[] args) throws Exception {
-
+    initialSpots();
     Vehicle car = new Car(1);
     enter(car);
 
@@ -23,7 +23,9 @@ public class ParkingLot {
     Vehicle truck = new Truck(3);
     enter(truck);
 
-    System.out.println(exit(1));
+    exit(1);
+    exit(2);
+    exit(3);
   }
 
   private static Ticket enter(Vehicle vehicle) throws Exception {
@@ -45,13 +47,40 @@ public class ParkingLot {
     return ticketService.generateTicket(vehicle, spot);
   }
 
+  /**
+   * payment system
+   *
+   * @param ticketId
+   * @return
+   * @throws Exception
+   */
   private static long exit(int ticketId) throws Exception {
     Ticket ticket = ticketService.complete(ticketId);
-    Spot spot = ticket.getSpot();
-    long rate = spot.getRate();
-    Duration duration = Duration.between(ticket.getEnterAt(), ticket.getExitAt());
-    long hours = duration.getSeconds() / (60 * 60);
-    return hours * rate;
+    returnSpot(ticket.getSpot());
+    return paymentSystem.checkout(ticket);
+  }
+
+  /**
+   * put spot back to free list and update spot status
+   *
+   * @param spot
+   * @throws Exception
+   */
+  private static void returnSpot(Spot spot) throws Exception {
+    switch (spot.getSize()) {
+      case SMALL:
+        smallSpots.add(spot);
+        break;
+      case MEDIUM:
+        mediumSpots.add(spot);
+        break;
+      case LARGE:
+        largeSpots.add(spot);
+        break;
+      default:
+        throw new Exception("This spot is not available");
+    }
+    spot.returnSpot();
   }
 
   private static void initialSpots() {
