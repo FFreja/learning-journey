@@ -1,7 +1,7 @@
-#Concourse Learning
-##overview
+# Concourse Learning
+## overview
 A Concourse installation is composed of a web node, a worker node, and a PostgreSQL node.
-##Quick Start
+## Quick Start
 **Docker**
 
 $ wget https://concourse-ci.org/docker-compose.yml
