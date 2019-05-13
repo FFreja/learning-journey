@@ -8,3 +8,5 @@ Document the journey of learning technologies
 '#2-cicd' : CI/CD
 
 '#3-ood' : Object Oriented Design
+
+'#4-java' : algorithm
