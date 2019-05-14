@@ -9,23 +9,21 @@ import entities.ListNode;
  */
 public class MergeTwoSortedLists {
   public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-    if (l1 == null) return l2;
-    if (l2 == null) return l1;
     ListNode head = new ListNode(0);
-    head.setNext((l1.getVal() <= l2.getVal() ? l1 : l2));
 
-    ListNode dummy;
+    ListNode dummy = head;
     while (l1 != null && l2 != null) {
-      if (l1.getVal() > l2.getVal()) {
-        dummy = l2.getNext();
-        l2.setNext(l1);
-        l2 = dummy;
+      if (l1.getVal() < l2.getVal()) {
+        dummy.setNext(l1);
+        l1 = l1.getNext();
       } else {
-        dummy = l1.getNext();
-        l1.setNext(l2);
-        l1 = dummy;
+        dummy.setNext(l2);
+        l2 = l2.getNext();
       }
+      dummy = dummy.getNext();
     }
+    if (l1 != null) dummy.setNext(l1);
+    if (l2 != null) dummy.setNext(l2);
     return head.getNext();
   }
 
@@ -39,15 +37,14 @@ public class MergeTwoSortedLists {
     ListNode node6 = new ListNode(4);
     node1.setNext(node2);
     node2.setNext(node3);
-//
-//    node4.setNext(node5);
-//    node5.setNext(node6);
-    ListNode node7 = new ListNode(5);
+    node4.setNext(node5);
+    node5.setNext(node6);
+    //    ListNode node7 = new ListNode(5);
     //    node6.setNext(node7);
-//    node3.setNext(node7);
+    //    node3.setNext(node7);
 
-    mergeTwoLists(node7, node1);
-//    mergeTwoLists(node1, node4);
+    //    mergeTwoLists(node7, node1);
+    mergeTwoLists(node1, node4);
     ListNode dummy = node1;
     while (dummy != null) {
       System.out.println(dummy.getVal()); // 1 1 2 3 4 4
